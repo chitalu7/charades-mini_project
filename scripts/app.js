@@ -1,49 +1,112 @@
-// Initialize Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyCt_RUSlyThUOfUA0YY3KzATeNnvYXzoLg",
-    authDomain: "vb-pt-v00.firebaseapp.com",
-    databaseURL: "https://vb-pt-v00-default-rtdb.firebaseio.com",
-    projectId: "vb-pt-v00",
-    storageBucket: "vb-pt-v00.appspot.com",
-    messagingSenderId: "138516709186",
-    appId: "1:138516709186:web:a07292e431c3347a1512db"
-  };
+// document.addEventListener('DOMContentLoaded', function () {
+//     var words = ["Hello", "World", "Bootstrap", "Carousel"]; // Your JSON array
+//     var carouselInner = document.querySelector('.carousel-inner');
 
-  
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+//     words.forEach(function(word, index) {
+//         var item = document.createElement('div');
+//         item.className = 'carousel-item' + (index === 0 ? ' active' : '');
+//         item.innerHTML = `<h1>${word}</h1>`;
+//         carouselInner.appendChild(item);
+//     });
+// });
 
-// Function to join the game
-function joinGame() {
-    // Generate a random username for simplicity
-    const username = "Player" + Math.floor(Math.random() * 1000);
 
-    // Create a reference to the 'players' node in the database
-    const playersRef = database.ref('players');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const words = ["Hello", "World", "Bootstrap", "Carousel", "Example"];
+//     const carouselInner = document.querySelector('.carousel-inner');
 
-    // Add the player to the database
-    const playerRef = playersRef.push({
-        username: username
-    });
+//     words.forEach((word, index) => {
+//         const item = document.createElement('div');
+//         item.className = 'carousel-item';
+//         if (index === 0) item.classList.add('active'); // First item is active
 
-    // Listen for changes in the players list
-    playersRef.on('value', (snapshot) => {
-        updatePlayersList(snapshot.val());
-    });
+//         const text = document.createElement('h1');
+//         text.innerText = word;
+//         text.className = 'text-center';
 
-    // Remove player when they leave the page
-    window.onbeforeunload = function () {
-        playerRef.remove();
-    };
-}
+//         item.appendChild(text);
+//         carouselInner.appendChild(item);
+//     });
+// });
 
-// Function to update the players list on the page
-function updatePlayersList(players) {
-    const playersListElement = document.getElementById('players-list');
-    playersListElement.innerHTML = '<h2>Players:</h2>';
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const words = ["Hello", "World", "Bootstrap", "Carousel", "Example"];
+//     const carouselInner = document.querySelector('.carousel-inner');
+
+//     words.forEach((word, index) => {
+//         const item = document.createElement('div');
+//         item.className = 'carousel-item';
+//         if (index === 0) item.classList.add('active'); // First item is active
+
+//         const text = document.createElement('h1');
+//         text.innerText = word;
+//         text.className = 'text-center';
+
+//         item.appendChild(text);
+//         carouselInner.appendChild(item);
+//     });
+
+//     // Initialize the carousel with no automatic cycling
+//     $('.carousel').carousel({
+//         interval: false
+//     });
+// });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const words = [
+        "Bump", "Teething", "Blanket", "Glow", "Kick",
+        "Parent", "Sibling", "Nanny", "Breastfeeding", "Lamaze",
+        "Hormones", "BabyBump", "Giggle", "Cooing", "Nap",
+        "Rattle", "HighChair", "Blue", "Pink", "Reveal",
+        "Announcement", "Blessing", "BurpCloth", "Mobile", "Pram",
+        "CarSeat", "Booties", "Bib", "Crawling", "Waddle",
+        "Storytime", "Playdate", "Milestone", "Tummy", "Daddy",
+        "Mommy", "Sunrise", "Moonlight", "Star", "Cherish",
+        "Embrace", "Yawn", "Snuggle", "Gentle", "Peaceful",
+        "Journey", "Pacify", "Dream", "Whisper", "BundleOfJoy",
+        "Baby", "Cradle", "Diaper", "Stroller", "Bottle",
+    "Ultrasound", "Pacifier", "Nursery", "Booties", "Belly",
+    "Crib", "Maternity", "Swaddle", "DueDate", "Heartbeat",
+    "Bassinet", "Onesie", "Pregnant", "Motherhood", "Fatherhood",
+    "Lullaby", "Midnight", "Naptime", "RockingChair", "TeddyBear",
+    "Twins", "Triplets", "Vitamins", "Sonogram", "Maternal",
+    "Paternal", "Fetal", "GenderReveal", "BunInOven", "Newborn",
+    "Infant", "Milk", "Siblings", "Family", "Cuddles",
+    "Cute", "Joy", "Love", "Happiness", "Celebration",
+    "Gifts", "BabyShower", "Expecting", "LittleOne", "Miracle"
+        
+    ];
     
-    for (const playerKey in players) {
-        const player = players[playerKey];
-        playersListElement.innerHTML += `<p>${player.username}</p>`;
+    const numberOfSlides = 50; // Number of slides you want to show
+    const shuffledWords = shuffleArray(words).slice(0, numberOfSlides);
+    const carouselInner = document.querySelector('.carousel-inner');
+
+    shuffledWords.forEach((word, index) => {
+        const item = document.createElement('div');
+        item.className = 'carousel-item';
+        if (index === 0) item.classList.add('active'); // First item is active
+
+        const text = document.createElement('h1');
+        text.innerText = word;
+        text.className = 'text-center';
+
+        item.appendChild(text);
+        carouselInner.appendChild(item);
+    });
+
+    // Initialize the carousel with no automatic cycling
+    $('.carousel').carousel({
+        interval: false
+    });
+});
+
+// Function to shuffle an array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
     }
+    return array;
 }
+

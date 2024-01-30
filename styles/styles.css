@@ -1,14 +1,27 @@
-body {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #1B1212!important;
+    /* Custom styles if needed */
 }
 
-#game-container {
-    margin: 20px;
+/* Additional custom styles for the top text */
+.bg-light {
+    background-color: #3A3B3C!important; /* Bootstrap light background */
 }
 
-#players-list {
-    margin: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
+/* Customize this part as per your need */
+h2 {
+    font-size: 2rem; /* Example font size for heading */
+    color: white;
+}
+
+p {
+    font-size: 1rem; /* Example font size for paragraph */
+}
+
+
+h1{
+    color: green;
+    font-size: 12rem;
 }
